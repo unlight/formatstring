@@ -1,0 +1,10 @@
+{
+  "name": "formatstring",
+  "version": "1.0.0",
+  "description": "C# style string.Format()",
+  "main": "index.js",
+  "scripts": {
+  },
+  "author": "",
+  "license": "ISC"
+}
