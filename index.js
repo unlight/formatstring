@@ -1,18 +1,34 @@
-module.exports = function(string, data) {
+module.exports = function(format, data) {
+	var pieces = [];
+
 	if (typeof data !== "object" || data === null) {
 		data = Array.prototype.slice.call(arguments, 1);
 	}
-	var position = -1;
-	for (var key in data) {
-		var token = "{" + key + "}";
-		while (true) {
-			position = string.indexOf(token, position + 1);
-			if (position === -1) {
-				break;
-			}
-			var value = data[key];
-			string = string.replace(token, value);
+
+	var openkey = "{";
+	var closekey = "}";
+
+	var position = 0;
+
+	while (true) {
+		var start = format.indexOf(openkey, position);
+		var end = format.indexOf(closekey, position);
+
+		if (start === -1 || end === -1) {
+			break;
 		}
+
+		var key = format.substring(start + openkey.length, end);
+		var value = String(data[key]);
+
+		var before = format.substring(position, start);
+		pieces.push(before);
+
+		pieces.push(value);
+
+		position = end + closekey.length;
 	}
-	return string;
+
+	var result = pieces.join("");
+	return result;
 }
