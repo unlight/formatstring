@@ -1,3 +1,5 @@
+/* eslint no-constant-condition:0 eol-last:0 */
+"use strict";
 module.exports = function(format, data) {
 	var pieces = [];
 
@@ -31,4 +33,4 @@ module.exports = function(format, data) {
 
 	var result = pieces.join("");
 	return result;
-}
+};
