@@ -1,10 +1,28 @@
 {
   "name": "formatstring",
-  "version": "1.2.1",
-  "description": "C# style string.Format()",
+  "version": "2.0.0",
+  "description": "C# style string format.",
   "main": "index.js",
-  "scripts": {
+  "scripts": {},
+  "author": "S",
+  "license": "Beerware",
+  "directories": {
+    "test": "test"
   },
-  "author": "",
-  "license": "X.Net"
+  "dependencies": {
+    "dot-prop": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unlight/formatstring.git"
+  },
+  "keywords": [
+    "format",
+    "c#",
+    "string"
+  ],
+  "bugs": {
+    "url": "https://github.com/unlight/formatstring/issues"
+  },
+  "homepage": "https://github.com/unlight/formatstring#readme"
 }
