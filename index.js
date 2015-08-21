@@ -1,42 +1,56 @@
 /* eslint no-constant-condition:0 eol-last:0 */
 "use strict";
 
+var dotp = require("dot-prop");
+
 var openkey = "{";
 var closekey = "}";
 
+var openkeyLength = openkey.length;
+var closekeyLength = closekey.length;
+
 module.exports = function(format, data) {
-    var pieces = [];
+	var pieces = [];
 
-    if (typeof data !== "object" || data === null) {
-        data = Array.prototype.slice.call(arguments, 1);
-    }
+	if (typeof data !== "object" || data === null) {
+		data = Array.prototype.slice.call(arguments, 1);
+	}
 
-    var position = 0;
+	var before;
+	var value;
+	var key;
+	var start;
+	var end;
+	var position = 0;
 
-    while (true) {
-        var start = format.indexOf(openkey, position);
-        var end = format.indexOf(closekey, position);
+	while (true) {
+		start = format.indexOf(openkey, position);
+		end = format.indexOf(closekey, position);
 
-        if (start === -1 || end === -1) {
-            // Insert trail piece.
-            var trail = format.substr(position);
-            if (trail !== "") {
-                pieces.push(trail);
-            }
-            break;
-        }
+		if (start === -1 || end === -1) {
+			// Insert trail piece.
+			var trail = format.substr(position);
+			if (trail !== "") {
+				pieces.push(trail);
+			}
+			break;
+		}
 
-        var key = format.substring(start + openkey.length, end);
-        var value = String(data[key]);
+		key = format.substring(start + openkeyLength, end);
+		if (key.indexOf(".") !== -1) {
+			value = dotp.get(data, key);
+		} else {
+			value = String(data[key]);	
+		}
 
-        var before = format.substring(position, start);
-        pieces.push(before);
+		before = format.substring(position, start);
+		pieces.push(before);
 
-        pieces.push(value);
+		pieces.push(value);
 
-        position = end + closekey.length;
-    }
+		position = end + closekey.length;
+	}
 
-    var result = pieces.join("");
-    return result;
+	var result = pieces.join("");
+	return result;
 };
