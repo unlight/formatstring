@@ -1,14 +1,15 @@
 /* eslint no-constant-condition:0 eol-last:0 */
 "use strict";
+
+var openkey = "{";
+var closekey = "}";
+
 module.exports = function(format, data) {
 	var pieces = [];
 
 	if (typeof data !== "object" || data === null) {
 		data = Array.prototype.slice.call(arguments, 1);
 	}
-
-	var openkey = "{";
-	var closekey = "}";
 
 	var position = 0;
 
@@ -17,6 +18,11 @@ module.exports = function(format, data) {
 		var end = format.indexOf(closekey, position);
 
 		if (start === -1 || end === -1) {
+			// Insert trail piece.
+			var trail = format.substr(position);
+			if (trail !== "") {
+				pieces.push(trail);
+			}
 			break;
 		}
 
