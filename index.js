@@ -28,6 +28,11 @@ module.exports = function(format, data) {
 		end = format.indexOf(closekey, position);
 
 		if (start === -1 || end === -1) {
+			// Insert trail piece.
+			var trail = format.substr(position);
+			if (trail !== "") {
+				pieces.push(trail);
+			}
 			break;
 		}
 
