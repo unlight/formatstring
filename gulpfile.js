@@ -3,5 +3,7 @@ var benchmark = require("gulp-benchmark");
 
 gulp.task("benchmark", function() {
 	return gulp.src("benchmarks/format.js")
-		.pipe(benchmark({}))
+		.pipe(benchmark({
+			reporters: benchmark.reporters.etalon("formatstring")
+		}))
 });
