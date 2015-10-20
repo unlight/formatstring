@@ -3,6 +3,12 @@ formatstring
 ------------
 Simple C# style format function.
 
+Install
+-------
+```js
+npm install --save formatstring
+```
+
 Examples
 --------
 ```js
