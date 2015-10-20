@@ -22,6 +22,7 @@ module.exports = function(format, data) {
 	var start;
 	var end;
 	var position = 0;
+	var trail;
 
 	while (true) {
 		start = format.indexOf(openkey, position);
@@ -29,7 +30,7 @@ module.exports = function(format, data) {
 
 		if (start === -1 || end === -1) {
 			// Insert trail piece.
-			var trail = format.substr(position);
+			trail = format.substr(position);
 			if (trail !== "") {
 				pieces.push(trail);
 			}
@@ -40,7 +41,7 @@ module.exports = function(format, data) {
 		if (key.indexOf(".") !== -1) {
 			value = dotp.get(data, key);
 		} else {
-			value = String(data[key]);	
+			value = String(data[key]);
 		}
 
 		before = format.substring(position, start);
