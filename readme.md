@@ -1,6 +1,8 @@
 
 formatstring
 ------------
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/unlight/formatstring.svg)](https://greenkeeper.io/)
 Simple C# style format function.
 
 Install
